@@ -1,18 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Учение по безопасности</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учебное предупреждение</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        .warning { color: red; font-size: 24px; }
+        :root {
+            --danger: #ef233c;
+            --text: #2b2d42;
+            --light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffd6d6 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .warning-container {
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 40px;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .warning-icon {
+            font-size: 60px;
+            color: var(--danger);
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: var(--danger);
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: var(--text);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .tips {
+            text-align: left;
+            margin: 25px 0;
+            padding-left: 20px;
+        }
+        
+        .tips li {
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: var(--danger);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #d90429;
+            transform: translateY(-2px);
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
     </style>
 </head>
 <body>
-    <div class="warning">
-        ⚠️ Это учение! ⚠️<br>
-        Вы ввели пароль на поддельной странице. <br>
-        В реальной жизни это привело бы к утечке данных.
+    <div class="warning-container">
+        <div class="warning-icon">⚠️</div>
+        <h1>Учебное предупреждение!</h1>
+        <p>Вы только что ввели свои учетные данные на поддельной странице входа.</p>
+        <p>В реальной ситуации это могло бы привести к утечке ваших данных.</p>
+        
+        <div class="tips">
+            <h3>Как распознать фишинг:</h3>
+            <ul>
+                <li>Проверяйте адрес сайта в браузерной строке</li>
+                <li>Обращайте внимание на ошибки в тексте</li>
+                <li>Не переходите по ссылкам из подозрительных писем</li>
+                <li>Используйте двухфакторную аутентификацию</li>
+            </ul>
+        </div>
+        
+        <p>Это тестовая проверка осведомленности о безопасности.</p>
+        <a href="#" class="btn"></a>
     </div>
-    <p><a href="https://ваша_компания.com/security">Узнайте больше о безопасности</a></p>
 </body>
 </html>
