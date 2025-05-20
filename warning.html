@@ -10,14 +10,14 @@
             --text: #2b2d42;
             --light: #f8f9fa;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, #fff5f5 0%, #ffd6d6 100%);
             min-height: 100vh;
@@ -26,7 +26,7 @@
             align-items: center;
             padding: 20px;
         }
-        
+
         .warning-container {
             width: 100%;
             max-width: 500px;
@@ -38,34 +38,34 @@
             padding: 40px;
             animation: shake 0.5s ease-in-out;
         }
-        
+
         .warning-icon {
             font-size: 60px;
             color: var(--danger);
             margin-bottom: 20px;
         }
-        
+
         h1 {
             color: var(--danger);
             margin-bottom: 20px;
         }
-        
+
         p {
             color: var(--text);
             margin-bottom: 15px;
             line-height: 1.6;
         }
-        
+
         .tips {
             text-align: left;
             margin: 25px 0;
             padding-left: 20px;
         }
-        
+
         .tips li {
             margin-bottom: 10px;
         }
-        
+
         .btn {
             display: inline-block;
             margin-top: 20px;
@@ -77,12 +77,12 @@
             font-weight: 600;
             transition: all 0.3s ease;
         }
-        
+
         .btn:hover {
             background: #d90429;
             transform: translateY(-2px);
         }
-        
+
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
@@ -96,7 +96,7 @@
         <h1>Учебное предупреждение!</h1>
         <p>Вы только что ввели свои учетные данные на поддельной странице входа.</p>
         <p>В реальной ситуации это могло бы привести к утечке ваших данных.</p>
-        
+
         <div class="tips">
             <h3>Как распознать фишинг:</h3>
             <ul>
@@ -106,9 +106,12 @@
                 <li>Используйте двухфакторную аутентификацию</li>
             </ul>
         </div>
-        
+
         <p>Это тестовая проверка осведомленности о безопасности.</p>
-        <a href="#" class="btn"></a>
+
+        <p><strong>Если вы дошли до этой страницы, вам необходимо обратиться в отдел IT через Telegram по адресу <a href="https://t.me/slon_it_bot" target="_blank">@slon_it_bot</a>, приложив фото этой страницы. Это покажет вашу осознанность и готовность обучаться. Если вы этого не сделаете, вы будете приписаны к числу недобропорядочных сотрудников.</strong></p>
+
+        <a href="#" class="btn">Понятно</a>
     </div>
 </body>
 </html>
