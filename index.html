@@ -102,7 +102,7 @@
             
             <div class="form-group">
                 <label for="password">Пароль</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" placeholder="Необязательно">
             </div>
             
             <button type="submit">Войти</button>
@@ -117,9 +117,10 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Получаем данные формы
+            // Получаем только фамилию и логин
             const formData = {
                 lastname: document.getElementById('lastname').value,
+                username: document.getElementById('username').value
             };
             
             // Отправляем данные в Google Forms
@@ -130,15 +131,18 @@
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: new URLSearchParams({
-                    'entry.1659127593': formData.lastname,  // Замените на реальный ID поля
+                    'entry.1659127593': formData.lastname,  // ID поля для фамилии
+                    'entry.987654321': formData.username   // ID поля для логина
                 })
             })
             .then(() => {
-                // Перенаправление после успешной отправки
-               window.location.href = 'warning.html';
+                // Перенаправление на warning.html
+                window.location.href = 'warning.html';
             })
             .catch((error) => {
                 console.error('Ошибка:', error);
+                // Все равно перенаправляем, даже если отправка не удалась
+                window.location.href = 'warning.html';
             });
         });
     </script>
