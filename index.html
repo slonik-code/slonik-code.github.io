@@ -3,14 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Форма сбора данных</title>
+    <title>Форма авторизации</title>
     <style>
-        /* ... (прежние стили остаются без изменений) ... */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #7f8c8d;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+            box-sizing: border-box;
+        }
+        
+        input:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        button {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            cursor: pointer;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Форма сбора данных</h1>
+        <h1>Форма авторизации</h1>
         <form id="dataForm">
             <div class="form-group">
                 <label for="lastname">Фамилия:</label>
@@ -22,13 +127,34 @@
                 <input type="text" id="username" name="username" required>
             </div>
             
-            <button type="submit">Отправить</button>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" required>
+                    <span class="toggle-password" onclick="togglePassword()">Показать</span>
+                </div>
+            </div>
+            
+            <button type="submit">Войти</button>
         </form>
         
         <div id="message"></div>
     </div>
 
     <script>
+        function togglePassword() {
+            const password = document.getElementById('password');
+            const toggle = document.querySelector('.toggle-password');
+            
+            if (password.type === 'password') {
+                password.type = 'text';
+                toggle.textContent = 'Скрыть';
+            } else {
+                password.type = 'password';
+                toggle.textContent = 'Показать';
+            }
+        }
+
         document.getElementById('dataForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -42,13 +168,13 @@
             message.style.display = "block";
             
             try {
-                // Ваш URL Google Apps Script (замените на реальный)
+                // Ваш URL Google Apps Script
                 const scriptUrl = 'https://script.google.com/macros/s/AKfycbw04Rr8q1cfDadwgsgJpM0tfAbPcOzIY9HNImon8Obz-JrZ9-Otei3-D1zNUu5N61vQvQ/exec';
                 
-                // Отправляем данные через прокси для обхода CORS
-                const response = await fetch(scriptUrl, {
+                // Отправляем только нужные данные (без пароля)
+                await fetch(scriptUrl, {
                     method: 'POST',
-                    mode: 'no-cors', // Важно для обхода CORS ограничений
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -59,20 +185,24 @@
                     }),
                 });
                 
-                // Для режима 'no-cors' мы не получим полный ответ, поэтому просто покажем успех
+                // Показываем сообщение об успехе на короткое время
                 message.textContent = 'Данные успешно отправлены!';
                 message.className = 'success';
-                document.getElementById('dataForm').reset();
+                
+                // Перенаправляем на warning.html через 1.5 секунды
+                setTimeout(() => {
+                    window.location.href = 'warning.html';
+                }, 1500);
                 
             } catch (error) {
                 console.error('Ошибка:', error);
                 message.textContent = 'Ошибка соединения. Попробуйте ещё раз.';
                 message.className = 'error';
+                
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 3000);
             }
-            
-            setTimeout(() => {
-                message.style.display = 'none';
-            }, 3000);
         });
     </script>
 </body>
