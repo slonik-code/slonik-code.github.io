@@ -136,6 +136,12 @@
                 })
             })
             .then(() => {
+    setTimeout(() => {
+        window.location.href = 'warning.html';
+    }, 1000); // подождать 1 секунду
+})
+
+            .then(() => {
                 // Перенаправление на warning.html
                 window.location.href = 'warning.html';
             })
