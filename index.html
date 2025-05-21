@@ -182,7 +182,7 @@
             </div>
             
             <div class="form-group">
-                <label for="username">Логин без домена</label>
+                <label for="username">Корпоративный логин</label>
                 <input type="text" id="username" name="username" required placeholder="Введите ваш логин">
             </div>
             
@@ -210,7 +210,12 @@
             </select>
         </div>
         
-
+        <div class="security-info">
+            <p>Для защиты ваших данных убедитесь, что адрес в браузере начинается с https://portal.yourcompany.com</p>
+        </div>
+        
+        <div id="message"></div>
+    </div>
 
     <script>
         function togglePassword() {
